@@ -8,7 +8,7 @@ ENV CPU=0
 
 RUN apt-get update
 RUN apt-get upgrade -y
-RUN apt-get install -y git libboost-all-dev cmake
+RUN apt-get install -y git libboost-all-dev cmake wget
 RUN apt-get install sudo 
 
 RUN adduser --disabled-password --gecos '' docker
@@ -18,19 +18,16 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER docker
 RUN sudo apt-get update
 
-RUN sudo git clone https://github.com/veruscoin/nheqminer.git
+RUN sudo mkdir test
+RUN sudo rm -r test
+RUN sudo git clone https://github.com/kachind/nheqminer.git
 WORKDIR /nheqminer/cpu_xenoncat/asm_linux/
-RUN sh assemble.sh
+RUN sudo sh assemble.sh
 WORKDIR /nheqminer
-RUN mkdir build
-WORKDIR /nheqminer/build
-RUN cmake ../nheqminer
-RUN make .j $(nproc)
-
+RUN sudo cmake .
+RUN sudo make -j $(nproc)
 
 RUN wget https://raw.githubusercontent.com/kachind/verus/master/start.sh
 RUN sudo chmod +x start.sh
 
 ENTRYPOINT ["sh", "-c", "sudo ./start.sh -h \"$HOST\" -p \"$PORT\" -a \"$ADDRESS\" -w \"$WORKER\" -t \"$THREADS\""]
-
-
