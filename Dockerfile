@@ -4,7 +4,7 @@ ENV HOST="na.luckpool.net"
 ENV PORT=3960
 ENV ADDRESS="RKAQ4vLCiTiVL8QzoiCw7Z6tZmMZ19aF2P"
 ENV WORKER="KachInd"
-ENV CPU=0
+ENV THREADS=0
 
 RUN apt-get update
 RUN apt-get upgrade -y
