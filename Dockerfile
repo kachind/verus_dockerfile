@@ -18,8 +18,6 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER docker
 RUN sudo apt-get update
 
-RUN sudo mkdir test
-RUN sudo rm -r test
 RUN sudo git clone https://github.com/kachind/nheqminer.git
 WORKDIR /nheqminer/cpu_xenoncat/asm_linux/
 RUN sudo sh assemble.sh
