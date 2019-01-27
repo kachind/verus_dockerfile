@@ -30,4 +30,4 @@ RUN sudo make -j $(nproc)
 RUN sudo wget https://raw.githubusercontent.com/kachind/verus/master/start.sh
 RUN sudo chmod +x start.sh
 
-ENTRYPOINT ["sh", "-c", "sudo ./start.sh -h \"$HOST\" -p \"$PORT\" -a \"$ADDRESS\" -w \"$WORKER\" -c \"$THREADS\""]
+ENTRYPOINT ["sh", "-c", "sudo ./start.sh -h \"$HOST\" -p \"$PORT\" -a \"$ADDRESS\" -w \"$WORKER\" -t \"$THREADS\""]
